@@ -3,7 +3,7 @@ const app = express();
 const path = require('path');
 const port = process.env.port || 3000;
 
-app.use(express.static('Develop/public'));
+app.use(express.static('Main/public'));
 
 app.get('/',(req,res) => {
     res.send('hello world');
