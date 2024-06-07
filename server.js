@@ -1,27 +1,29 @@
 const express = require('express');
+const app = express();
+const apiRoute = require('./routes');
+
 const path = require('path');
 const fs = require('fs');
 const port = process.env.port || 3000;
-const app = express();
 
+// Use the API routes
+app.use('/api', apiRoute);
 
-// Helper method for generating unique ids
-const uuid = require('./helpers/uuid');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
-// app.get('*',(req,res) => {
-//     res.send(path.join(__dirname,'public/index.html'));
-// });
-
-app.get('/notes', (req,res) => 
-    res.sendFile(path.join(__dirname,'public/notes.html'))
+app.get('/notes', (req, res) => 
+  res.sendFile(path.join(__dirname, 'public/notes.html'))
 );
- 
 
-app.listen(`${port}`, () => {
-    console.log(`ok , Server is running on http://localhost:${port}`);
-})
+//for all other get request redirect to index.html
+app.get('*', (req,res) => 
+    res.sendFile(path.join(__dirname,'public/index.html'))
+);
+
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
