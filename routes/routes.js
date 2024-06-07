@@ -44,6 +44,21 @@ router.post('/notes', async (req, res) => {
   }
 });
 
+//delete note by id
+router.delete('/notes/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const data = await fs.readFile(path.join(__dirname, '../db/db.json'), 'utf8');
+    let notes = JSON.parse(data);
+    notes = notes.filter(note => note.id !== id);
+    await fs.writeFile(path.join(__dirname, '../db/db.json'), JSON.stringify(notes, null, 4));
+    res.status(200).json({ message: 'Note deleted successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to delete note' });
+  }
+});
 
 
 module.exports = router;
