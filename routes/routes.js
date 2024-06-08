@@ -5,7 +5,6 @@ const uuid = require('../helpers/uuid');
 const path = require('path');
 const router = express.Router()
 
-
 //reterive all notes
 router.get('/notes', async (req, res) => {
   try {
