@@ -2,10 +2,10 @@
 
 It is an application called Note Taker that can be used to write and save notes. This application will use an Express.js back end and will save and retrieve note data from a JSON file. Backend of the application is built with Node.js and Express. Notes are stored in JSON file on the server. a `db.json` file is created  that will be used to store and retrieve notes using the `fs` module.The UUID(unique id) generation is handled by the uuid helper.
 
-## To run application install package using following cmd:
+### To run application install package using following cmd:
 npm install
 
-## To start server
+### To start server
 npm run start
 
 The following HTML routes are created:
